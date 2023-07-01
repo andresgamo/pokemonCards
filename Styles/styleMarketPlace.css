@@ -82,7 +82,7 @@ input:hover{
 }
 
 .item-a{
-    border-bottom: solid #1A202C 0.125rem;
+    border-bottom: solid #306BB3 0.125rem;
     width: 100%;
     height: 100%;
     display: flex;
@@ -91,7 +91,7 @@ input:hover{
     font-weight: 600;
     font-size: 1.375rem;
     line-height: 150%;
-    color: black;
+    color: #306BB3 !important;
     text-transform: capitalize;
 }
 
@@ -112,7 +112,7 @@ input:hover{
 .up-container p,
 .up-container a,
 .down-container p{
-    color: #1A202C;
+    color: #1A202C !important;
     font-weight: 600;
     font-size: 1.25rem;
     line-height: 150%;
@@ -169,7 +169,7 @@ input[value="Buy"]{
     width: 7.25rem;
     height: 2.75rem;
     box-shadow: none;
-    color: white;
+    color: white !important;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 150%;
@@ -198,6 +198,7 @@ input[value="Show more cards"]{
     padding: 10px;
     align-self: center;
     justify-self:center;
+    color:#306BB3 !important;
 }
 
 input[value="Go up"]{
@@ -208,6 +209,7 @@ input[value="Go up"]{
     align-self: flex-end;
     justify-self:center;
     border-radius: 25px;
+    color:#306BB3 !important;
 }
 
 

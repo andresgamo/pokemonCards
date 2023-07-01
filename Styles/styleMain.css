@@ -94,8 +94,12 @@ input{
     border-radius: 0.25rem;
     font-size: 0.875rem;
     letter-spacing: -0.03em;
-    color: #306BB3;
+    /* background-color: white !important; */
 } 
+
+input[value="Dark Mode"]{
+    color:#306BB3 !important;
+}
 
 .footer-logo{
     display: flex;
@@ -130,7 +134,7 @@ input{
     justify-content: center;
     align-items: center;
     padding: 15px;
-    border: none;
+    border: solid white 1px !important;
     background-color: #FFFFFF;
     border-radius: 50%;
     width: 33px;
@@ -208,4 +212,16 @@ input:hover{
     cursor: pointer
 }
 
+
+.dark-1{
+    background-color: rgb(0, 0, 0);
+}
+
+.dark-2{
+    background-color: rgb(26, 26, 26);
+}
+
+.dark-txt{
+    color: white !important;
+}
 

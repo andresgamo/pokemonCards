@@ -1,5 +1,30 @@
 const darkMode = document.querySelector('#dark-mode');
-// darkMode.addEventListener('click', () => console.log('Dark mode '))
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+const section = document.querySelector('section');
+const socials = document.querySelectorAll('.socials');
+
+const all = document.getElementsByTagName("*");
+
+darkMode.addEventListener("click", () => {
+  if (sessionStorage.darkMode === "off") {
+    sessionStorage.darkMode = "on";
+  } else {
+    sessionStorage.darkMode = "off";
+  }
+  toggleTheme()
+});
+
+
+function toggleTheme() {
+  for (let i = 0; i < all.length; i++) {
+    all[i].classList.toggle("dark-txt");
+  }
+  header.classList.toggle("dark-1");
+  footer.classList.toggle("dark-1");
+  section.classList.toggle("dark-2");
+  socials.forEach(element => element.classList.toggle("dark-2"));
+}
 
 function showCards(pokemons){
     for (let i = 0; i < pokemons.length; i++) {
@@ -82,3 +107,9 @@ function updateNumCards(){
     const cards = document.querySelectorAll('.main-container').length;
     numCards.textContent = `${cards} cards`;
 }
+
+(() => {
+    if(sessionStorage.darkMode === 'on'){
+        toggleTheme();
+    }
+})()
