@@ -35,5 +35,6 @@ async function main (){
     showImg(pokemonData);
     showCard(pokemonData);
     showDetails(pokemonData);
+    showCart(pokemonData);
     
 } main();

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./Styles/styleGameBoy.css"> -->
     <link rel="stylesheet" href="./Styles/styleMain.css">
     <link rel="stylesheet" href="./Styles/styleBuyCards.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,16 +30,29 @@
         <div class="pokemon-details">
             
             <div id="card-details-container">
-                <div id="central-img-container"><img id="central-img" class="img-pokemon" src="./Assets/580b57fcd9996e24bc43c31c 1.png" alt="img-pokemon"></div>
-                <ul class="card-details"> </ul>
+                <div id="central-img-container"><img id="central-img" class="img-pokemon" src="" alt="img-pokemon"></div>
+                <ul class="card-details"></ul>
             </div>
 
             <div id="delimiter"></div>
         </div>
 
-        <div class="shopping-cart">
-            <div class="shopping-cart-container">
-                <h3>Shopping Cart</h3>
+        <div class="shopping-cart-container">
+                <div class="up-shopping-cart">
+                    <span>PokeCart</span>
+                </div>
+                <div class="shopping-cart">
+                    <img class="gif-pokemon" src="" alt="charmander">
+                    <div class="txt-3"> ------------------ </div>
+                    <div class="txt-3"> Sub-total: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp5 USD </div>
+                    <div class="txt-3"> ------------------ </div>
+                    <div class="txt-3"> Taxes 8%: &nbsp&nbsp0.4 USD </div>
+                    <div class="txt-3"> ------------------ </div>
+                    <div class="txt-3"> Total: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp5.4 USD </div>
+                    <div class="txt-3"> ------------------ </div>
+                    <div> <a href="" value="buy"><input type="button" value="Buy"></a> </div>
+                </div>
+                <div class="down-shopping-cart"></div>
             </div>
         </div>
         </section>
@@ -81,9 +93,8 @@
         </div>
     </footer>
 
-    <script src="./Scripts/graphics.js"></script>
     <script src="./Scripts/fetchData.js"></script>
     <script src="./Scripts/buyCards.js"></script>
-
+    <script src="./Scripts/graphics.js"></script>
 </body>
 </html>

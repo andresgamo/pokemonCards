@@ -1,38 +1,48 @@
-const darkMode = document.querySelector('#dark-mode');
-const header = document.querySelector('header');
-const footer = document.querySelector('footer');
-const section = document.querySelector('section');
-const socials = document.querySelectorAll('.socials');
-
+const header = document.querySelector("header");
+const footer = document.querySelector("footer");
+const section = document.querySelector("section");
+const socials = document.querySelectorAll(".socials");
 const all = document.getElementsByTagName("*");
+const darkMode = document.querySelector("#dark-mode");
 
 darkMode.addEventListener("click", () => {
-  if (sessionStorage.darkMode === "off") {
-    sessionStorage.darkMode = "on";
-  } else {
+  if (sessionStorage.darkMode === "on") {
     sessionStorage.darkMode = "off";
+  } else {
+    sessionStorage.darkMode = "on";
   }
-  toggleTheme()
+  toggleTheme();
 });
 
-
 function toggleTheme() {
-  for (let i = 0; i < all.length; i++) {
-    all[i].classList.toggle("dark-txt");
-  }
   header.classList.toggle("dark-1");
   footer.classList.toggle("dark-1");
   section.classList.toggle("dark-2");
-  socials.forEach(element => element.classList.toggle("dark-2"));
+  socials.forEach((element) => element.classList.toggle("dark-2"));
+
+  for (let i = 0; i < all.length; i++) {
+    all[i].classList.toggle("dark-txt");
+  }
+
+  if (document.querySelector("#delimiter")) {
+    const delimiter = document.querySelector("#delimiter");
+    const upCart = document.querySelector(".up-shopping-cart");
+    const downCart = document.querySelector(".down-shopping-cart");
+    const shoppingCart = document.querySelector(".shopping-cart");
+    delimiter.classList.toggle("dark-3");
+    upCart.classList.toggle("dark-1");
+    upCart.classList.toggle("dark-border");
+    downCart.classList.toggle("dark-1");
+    downCart.classList.toggle("dark-border");
+    shoppingCart.classList.toggle("dark-border");
+  }
 }
 
-function showCards(pokemons){
-    for (let i = 0; i < pokemons.length; i++) {
-        const card = document.createElement('div');
-        card.classList.add('main-container');
-        card.innerHTML = 
-        
-            `<div class="up-container">
+function showCards(pokemons) {
+  for (let i = 0; i < pokemons.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("main-container");
+    card.innerHTML = `<div class="up-container">
                 <p>${pokemons[i].name}</p>
                 <a href="">${pokemons[i].hp} HP</a>
             </div>
@@ -42,18 +52,16 @@ function showCards(pokemons){
             <div class="down-container">
                 <p>${pokemons[i].exp} exp</p>
                 <a href="./buyCard.html?pokemon=${pokemons[i].id}" value="buy"><input type="button" value="Buy"></a>
-            </div> `;  
-        grid.appendChild(card);    
-    }
+            </div> `;
+    grid.appendChild(card);
+  }
 }
 
-function showCard(pokemons){
-    for (let i = 0; i < pokemons.length; i++) {
-        const card = document.createElement('div');
-        card.classList.add('main-container');
-        card.innerHTML = 
-        
-            `<div class="up-container">
+function showCard(pokemons) {
+  for (let i = 0; i < pokemons.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("main-container");
+    card.innerHTML = `<div class="up-container">
                 <p>${pokemons[i].name}</p>
                 <a href="">${pokemons[i].hp} HP</a>
             </div>
@@ -63,53 +71,68 @@ function showCard(pokemons){
             <div class="down-container">
                 <p>${pokemons[i].exp} exp</p>
                 <div id="pokemon-logo"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
-            </div> `;  
-        cardSection.appendChild(card);    
-    }
+            </div> `;
+    cardSection.appendChild(card);
+  }
 }
 
 function showDetails(pokemons) {
-  const details = document.querySelector('.card-details');
+  const details = document.querySelector(".card-details");
   const pokemonDetalis = pokemons[0];
-  for (const [attributeName,attributeValue] of Object.entries(pokemonDetalis)) {
-    if(attributeName != 'img' && attributeName != 'gif'){
-        const detail = document.createElement('li');
-        detail.innerHTML = `<span class="txt-1">${attributeName}:</span><span class="txt-2">&nbsp&nbsp${attributeValue}</span>`
+  for (const [attributeName, attributeValue] of Object.entries(
+    pokemonDetalis
+  )) {
+    if (attributeName != "img" && attributeName != "gif") {
+      const detail = document.createElement("li");
+      if (sessionStorage.darkMode === "on") {
+        detail.innerHTML = `<span class="txt-1 dark-txt">${attributeName}:</span><span class="txt-2 dark-txt">&nbsp&nbsp${attributeValue}</span>`;
         details.appendChild(detail);
+      } else {
+        detail.innerHTML = `<span class="txt-1">${attributeName}:</span><span class="txt-2">&nbsp&nbsp${attributeValue}</span>`;
+        details.appendChild(detail);
+      }
     }
   }
 }
 
 function showImg(pokemons) {
   const pokemonDetalis = pokemons[0];
-  const centralImagen = document.querySelector('#central-img');
+  const centralImagen = document.querySelector("#central-img");
   centralImagen.src = `${pokemonDetalis.img}`;
 }
 
-function addLoadSpiner(){
-    const endSection = document.querySelector('#end-section');
-    const loadSpiner = document.createElement('div');
-    loadSpiner.classList.add('spinner-border');
-    loadSpiner.classList.add('text-light');
-    endSection.appendChild(loadSpiner);
+function showCart(pokemons) {
+  const pokemonDetalis = pokemons[0];
+  const pokemonGif = document.querySelector(".gif-pokemon");
+  pokemonGif.src = `${pokemonDetalis.gif}`;  
 }
 
-async function deleteLoadSpiner(){
-    document.querySelector('.spinner-border').remove();
+function addLoadSpiner() {
+  const endSection = document.querySelector("#end-section");
+  const loadSpiner = document.createElement("div");
+  loadSpiner.classList.add("spinner-border");
+  loadSpiner.classList.add("text-light");
+  endSection.appendChild(loadSpiner);
 }
 
-async function removeGrid(){
-    const grid = document.querySelector('.grid-2');
-    grid.innerHTML = '';
+async function deleteLoadSpiner() {
+  document.querySelector(".spinner-border").remove();
 }
 
-function updateNumCards(){
-    const cards = document.querySelectorAll('.main-container').length;
-    numCards.textContent = `${cards} cards`;
+async function removeGrid() {
+  const grid = document.querySelector(".grid-2");
+  grid.innerHTML = "";
 }
+
+function updateNumCards() {
+  const cards = document.querySelectorAll(".main-container").length;
+  numCards.textContent = `${cards} cards`;
+}
+
+
 
 (() => {
-    if(sessionStorage.darkMode === 'on'){
-        toggleTheme();
-    }
-})()
+  if (sessionStorage.darkMode === "on") {
+    toggleTheme();
+  }
+})();

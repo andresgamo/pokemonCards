@@ -79,6 +79,20 @@ h1{
     color: #1A202C;
 }
 
+#poketochi-logo{
+    background-image: linear-gradient(to right, blue 2%, green, magenta 30%, red, rgb(255, 255, 0) 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    display: block;
+    width: 120px;
+    font-style: italic;
+    transition: 3s ease-in-out;   
+}
+
+#poketochi-logo:hover{
+    transform: scale(1.2)
+}
 
 @media(width <= 1440px){
     .img-container{
