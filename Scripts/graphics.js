@@ -4,6 +4,7 @@ const section = document.querySelector("section");
 const socials = document.querySelectorAll(".socials");
 const all = document.getElementsByTagName("*");
 const darkMode = document.querySelector("#dark-mode");
+const body = document.querySelector("body");
 
 darkMode.addEventListener("click", () => {
   if (sessionStorage.darkMode === "on") {
@@ -18,13 +19,14 @@ function toggleTheme() {
   header.classList.toggle("dark-1");
   footer.classList.toggle("dark-1");
   section.classList.toggle("dark-2");
+  body.classList.toggle("dark-2");
   socials.forEach((element) => element.classList.toggle("dark-2"));
 
   for (let i = 0; i < all.length; i++) {
     all[i].classList.toggle("dark-txt");
   }
 
-  if (document.querySelector("#delimiter")) {
+  if (window.location.pathname === '/buyCard.html') {
     const delimiter = document.querySelector("#delimiter");
     const upCart = document.querySelector(".up-shopping-cart");
     const downCart = document.querySelector(".down-shopping-cart");
@@ -102,9 +104,9 @@ function showImg(pokemons) {
 }
 
 function showCart(pokemons) {
-  const pokemonDetalis = pokemons[0];
+  const pokemonDetails = pokemons[0];
   const pokemonGif = document.querySelector(".gif-pokemon");
-  pokemonGif.src = `${pokemonDetalis.gif}`;  
+  pokemonGif.src = `${pokemonDetails.gif}`;  
 }
 
 function addLoadSpiner() {

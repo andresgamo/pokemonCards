@@ -4,6 +4,22 @@ const grid = document.querySelector('#card-details-container');
 const cardSection = document.querySelector('.pokemon-details');
 const endPoint = `${url}/${id}`;
 
+const buyButton = document.querySelector('input[value=Buy]');
+
+buyButton.addEventListener('click', addToCart);
+
+function addToCart() {
+  if (sessionStorage.cart) {
+    const cart = sessionStorage.cart.split(',');
+    cart.push(id);
+    sessionStorage.setItem("cart", cart);
+    console.log(sessionStorage.cart, cart);
+  } else {
+    sessionStorage.setItem("cart", id);
+    console.log(sessionStorage.cart);
+  }
+}
+
 async function getData(allPokemonData){
     const pokemonData = [];
     pokemonData.push({
@@ -36,5 +52,4 @@ async function main (){
     showCard(pokemonData);
     showDetails(pokemonData);
     showCart(pokemonData);
-    
 } main();

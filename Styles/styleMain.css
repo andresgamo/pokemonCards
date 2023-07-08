@@ -211,25 +211,3 @@ ul[class="right-footer-ul"] p{
 input:hover{
     cursor: pointer
 }
-
-
-.dark-1{
-    background-color: rgb(0, 0, 0) !important;
-}
-
-.dark-2{
-    background-color: rgb(26, 26, 26);
-}
-
-.dark-3{
-    background-color: white !important;
-}
-
-.dark-txt{
-    color: white !important;
-}
-
-.dark-border{
-    border: solid black 1px !important;
-}
-

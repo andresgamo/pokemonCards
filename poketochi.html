@@ -1,13 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styles/styleGameBoy.css">
+    <link rel="stylesheet" href="./styles/stylePoketochi.css">
+    <link rel="stylesheet" href="./styles/styleDark.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
     <title>Pokétochi</title>
 </head>
+
 <body>
-    
+    <header>
+        <div class="home-link"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
+        <div class="inline">
+            <nav>
+                <ul>
+                    <li><a class="nav-txt nav-txt-select" href="./index.html">Home</a></li>
+                    <li><a class="nav-txt" href="./marketPlace.html">BuyCards</a></li>
+                    <li><a class="nav-txt" href="">Our Blog</a></li>
+                </ul>
+            </nav>
+            <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="tamagotchi">
+                <div class="left separation"></div>
+                <div class="name">
+                    <span class="initial">P</span>o<span class="m">k</span>étoc<span class="h">h</span>i
+                </div>
+                <div class="tamagotchi-inner">
+                    <div class="screen">
+                        <div class="top">
+                            <div class="stats-container">
+                                <div class="txt-bold">Sleep:&nbsp&nbsp&nbsp&nbsp<span class="sleep-percentaje">100</span><span>%</span></div>
+                                <div class="txt-bold">Hunger:<span class="hunger-percentaje"> 100</span><span>%</span></div>
+                            </div>
+                            <div class="sprint-container">
+                                <span class="txt-bold">Sprint:&nbsp&nbsp</span>
+                                <div class="sr-level">
+                                    <div class="sprint-level"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middle">
+                            <img class="gif-pokemon" src="" alt="">
+                        </div>
+                        <div class="bottom">
+                            <span class="txt-bold">Seniority:</span>
+                            <div class="sr-level">
+                                <div class="exp-level"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right separation"></div>
+                <div class="buttons-container">
+                    <div class="left button" value="sleep"></div>
+                    <div class="middle button" value="code"></div>
+                    <div class="right button" value="feed"></div>
+                </div>
+                <div class="actions-container">
+                    <div class="txt-bold">Sleep</div>
+                    <div class="txt-bold action-1">Code</div>
+                    <div class="txt-bold">Feed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="left-footer">
+            <div class="footer-logo"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
+            <p>Our vision is to provide convenience and help increase your sales business.</p>
+            <div>
+                <ul class="inline gap">
+                    <li class="socials"><i class="fa-brands fa-twitter"></i></li>
+                    <li class="socials"><i class="fa-brands fa-facebook-f"></i></li>
+                    <li class="socials"><i class="fa-brands fa-instagram"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-footer inline gap-2">
+            <ul class="right-footer-ul">
+                <p>About</p><br>
+                <li><a class="foot-link" href="">How it works</a></li><br>
+                <li><a class="foot-link" href="">Featured</a></li><br>
+                <li><a class="foot-link" href="">Partnership</a></li><br>
+                <li><a class="foot-link" href="">Bussiness Relation</a></li>
+            </ul>
+            <ul class="right-footer-ul">
+                <p>Community</p><br>
+                <li><a class="foot-link" href="">Events</a></li><br>
+                <li><a class="foot-link" href="">Blog</a></li><br>
+                <li><a class="foot-link" href="">Podcast</a></li><br>
+                <li><a class="foot-link" href="">Invite a friend</a></li>
+            </ul>
+            <ul class="right-footer-ul">
+                <p>Socials</p><br>
+                <li><a class="foot-link" href="">Discord</a></li><br>
+                <li><a class="foot-link" href="">Instagram</a></li><br>
+                <li><a class="foot-link" href="">Twitter</a></li><br>
+                <li><a class="foot-link" href="">Facebook</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="./Scripts/fetchData.js"></script>
+    <script src="./scripts/graphics.js"></script>
+    <script src="./scripts/poketochi.js"></script>
+
 </body>
+
 </html>
