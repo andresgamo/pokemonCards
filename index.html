@@ -20,16 +20,16 @@
 
 <body>
     <header>
-        <div class="home-link"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
-        <div class="inline">
+        <a href="/" class="home-link"> <img src="./Assets/logo.png" alt="pokémon-logo"></a>
+        <div class="inline">  <!-- cambiar inline a flex -->
             <nav>
                 <ul>
                     <li><a class="nav-txt nav-txt-select" href="./index.html">Home</a></li>
                     <li><a class="nav-txt" href="./marketPlace.html">BuyCards</a></li>
-                    <li><a class="nav-txt" href="">Our Blog</a></li>
+                    <li><a class="nav-txt" href="./ourBlog.html">Our Blog</a></li>
                 </ul>
             </nav>
-            <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
+            <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div> <!-- <button class="input-container" id="dark-mode"> Dark mode</button> -->
         </div>
     </header>
     <section>
@@ -41,14 +41,12 @@
                 Pokémon has since become the 2nd most successful and lucrative video game-based media franchise in the
                 world, behind only Nintendo's Mario series.</p>
             <ul class="article-link">
-                <li><a href="">Go to our blog</a></li>
+                <li><a href="./ourBlog.html">Go to our blog</a></li>
                 <li><a href="./marketPlace.html">Buy cards</a></li>
                 <li><a href="./poketochi.html" id="poketochi-logo">Pokétochi</a></li>
             </ul>
-
-
         </article>
-        <div class="img-container"> <img src="./Assets/ash-leaves-anime 1.png" alt="ash-leaves-logo"></div>
+        <div class="img-container"> <img src="./Assets/ash-leaves-anime 1.png" alt="ash-leaves-logo"></div> <!-- el alt debe ser una descripción, como para invidentes -->
     </section>
     <footer>
         <div class="left-footer">
@@ -64,7 +62,7 @@
         </div>
         <div class="right-footer inline gap-2">
             <ul class="right-footer-ul">
-                <p>About</p><br>
+                <p>About</p><br><!-- la etiqueta pudo haber sido h2 -->
                 <li><a class="foot-link" href="">How it works</a></li><br>
                 <li><a class="foot-link" href="">Featured</a></li><br>
                 <li><a class="foot-link" href="">Partnership</a></li><br>

@@ -40,6 +40,13 @@ function toggleTheme() {
   }
 }
 
+function upDateTaxesContainer(pokemons){
+  const shoppingCart = document.querySelector('.taxes-details');
+  shoppingCart.innerHTML = `<div class="txt-4"> Hurraaay! </div>
+                            <div class="txt-4"> You catch 1</div> 
+                            <div class="txt-4 txt-capitalize"> ${pokemonData[0].name} </div>`;
+}
+
 function showCards(pokemons) {
   for (let i = 0; i < pokemons.length; i++) {
     const card = document.createElement("div");
@@ -130,8 +137,6 @@ function updateNumCards() {
   const cards = document.querySelectorAll(".main-container").length;
   numCards.textContent = `${cards} cards`;
 }
-
-
 
 (() => {
   if (sessionStorage.darkMode === "on") {

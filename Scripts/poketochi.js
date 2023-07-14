@@ -46,19 +46,20 @@ function initListeners() {
   const actions = document.querySelector(".buttons-container");
   for (const action of actions.childNodes) {
     if (actionStatus) {
-      action.removeEventListener("click", game);
+      action.removeEventListener("click", play);
       action.addEventListener("click", stop);
     } else {
-      action.addEventListener("click", game);
+      action.addEventListener("click", play);
       action.removeEventListener("click", stop);
     }
   }
 }
 
-function play() {
+function play(evt) {
+  const action = evt.target.attributes.value.textContent;
   actionStatus = true;
   initListeners();
-  interval = setInterval(actions, 1000);
+  interval = setInterval(() => actions(action), 1000);
 }
 
 function stop() {
@@ -80,23 +81,27 @@ function actions() {
   statsUpDate();
 }
 
-function game(e) {
-  action = e.target.attributes.value.textContent;
-  play();
-}
 
 async function initPokemons(cart) {
+
   for (let id = 0; id < cart.length; id++) {
+
     const endPoint = `${url}/${cart[id]}`;
     const allPokemonData = await fetchData(endPoint);
     cart[id] = {
       id: cart[id],
       name: allPokemonData.species.name,
-      gif: allPokemonData.sprites.versions["generation-v"]["black-white"]
-        .animated.front_default,
+      gif: allPokemonData.sprites.versions["generation-v"]["black-white"].animated.front_default,
     };
+    
   }
   return cart;
+
+  // return cart.map(async (id) => {
+  //   const endPoint = `${url}/${id}`;
+
+  //   return await fetchData(endPoint);
+  // })
 }
 
 async function main(characters, id) {
@@ -110,7 +115,7 @@ async function main(characters, id) {
   if (sessionStorage.cart) {
     const cart = sessionStorage.cart.split(",");
     const pokemons = await initPokemons(cart);
-    main(pokemons, (id = 0));
+    main(pokemons, id = 0);
   } else {
     const screen = document.querySelector(".middle");
     screen.innerHTML = `<div class="txt-light">You got no pokémos yet.</div> 

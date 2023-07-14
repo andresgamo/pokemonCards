@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Styles/styleMain.css">
+    <link rel="stylesheet" href="./styles/styleOurBlog.css">
     <link rel="stylesheet" href="./styles/styleDark.css">
-    <link rel="stylesheet" href="./Styles/styleBuyCards.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -16,57 +16,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap"
         rel="stylesheet">
     <title>Pokémon Cards</title>
-</head>
-
-<body>
-    <header>
-        <div class="home-link"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
-        <div class="inline">
-            <nav>
-                <ul>
-                    <li><a class="nav-txt" href="./index.html">Home</a></li>
-                    <li><a class="nav-txt nav-txt-select" href="./marketPlace.html">BuyCards</a></li>
-                    <li><a class="nav-txt" href="">Our Blog</a></li>
-                </ul>
-            </nav>
-            <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
-        </div>
-    </header>
-    <section>
-        <div class="pokemon-details">
-            <div id="card-details-container">
-                <div id="central-img-container"><img id="central-img" class="img-pokemon" src="" alt="img-pokemon">
+    </head>
+    
+    <body>
+        <header>
+            <a class="home-link" href="/"> <img src="./Assets/logo.png" alt="pokémon-logo"></a>
+            <div class="inline">
+                <nav>
+                    <ul>
+                        <li><a class="nav-txt" href="./index.html">Home</a></li>
+                        <li><a class="nav-txt" href="./marketPlace.html">BuyCards</a></li>
+                        <li><a class="nav-txt nav-txt-select" href="">Our Blog</a></li>
+                    </ul>
+                </nav>
+                <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
+            </div>
+        </header>
+        <section>
+            <div>            
+                <h1>Lorem ipsum dolor sit</h1>
+                <p id="p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboree.</p>
+            </div>
+            <article>
+                <div class="p-container">
+                    <p>The Pokemon Company has revealed a few of the cards in the Pokemon Trading Card Game's upcoming
+                        Pokemon Go expansion, featuring Pokemon and trainers that will be familiar to Pokemon Go players.
+                        The three Pokemon Go team leaders--Valor's Candela, Mystic's Blanche, and Instinct's Spark--will
+                        receive
+                        Trainer Supporter cards, each one allowing the player to draw two cards and potentially recover an
+                        energy
+                        card from the discard pile. The three leaders will also each have standard and full-card art
+                        variants.
+                        Some of the Pokemon featured in the card previews are Pikachu, Melmetal, Alolan Exeggutor, and more.
+                        Mewtwo
+                        is also shown to be the first V-Star Pokemon revealed for the new set, with a power that deals big
+                        damage to
+                        multiple Pokemon at a time.
+                        The new Radiant mechanic from the upcoming Astral Radiance expansion in May is confirmed to return,
+                        featuring Pokemon so unique players can only have one Radiant Pokemon in a single deck. The Radiant
+                        Pokemon
+                        previewed is Eevee, with a power that allows the player to draw multiple cards depending on how many
+                        different Pokemon types they control in the field.
+                    </p>
                 </div>
-                <ul class="card-details"></ul>
-            </div>
-
-            <div id="delimiter"></div>
-        </div>
-
-        <div class="shopping-cart-container">
-            <div class="up-shopping-cart">
-                <span>PokeCart</span>
-            </div>
-            <div class="shopping-cart">
-                <img class="gif-pokemon" src="" alt="">
-                <div class="taxes-details">
-                    <div class="txt-3"> ------------------ </div>
-                    <div class="txt-3"> Sub-total: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp5 USD </div>
-                    <div class="txt-3"> ------------------ </div>
-                    <div class="txt-3"> Taxes 8%: &nbsp&nbsp0.4 USD </div>
-                    <div class="txt-3"> ------------------ </div>
-                    <div class="txt-3"> Total:
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp5.4 USD
-                    </div>
-                    <div class="txt-3"> ------------------ </div>
-                </div>
-                <input type="button" value="Buy">
-            </div>
-            <div class="down-shopping-cart">
-                <div class="poketochi-container"><a href="./poketochi.html" id="poketochi-logo">Pokétochi</a></div>
-            </div>
-        </div>
-        </div>
+                <div class="img-container"> <img src="./assets/ash-leaves-anime 2.png" alt="ash-leaves-logo"></div>
+            </article>
     </section>
     <footer>
         <div class="left-footer">
@@ -105,9 +99,7 @@
         </div>
     </footer>
 
-    <script src="./Scripts/fetchData.js"></script>
-    <script src="./Scripts/graphics.js"></script>
-    <script src="./Scripts/buyCards.js"></script>
-</body>
-
-</html>
+        <script src="./Scripts/graphics.js"></script>
+    </body>
+    
+    </html>

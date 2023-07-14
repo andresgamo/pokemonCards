@@ -1,3 +1,5 @@
+// import { fetchData,getData } from "./fetchData";
+
 const url = 'https://pokeapi.co/api/v2';
 const grid = document.querySelector('.grid-2');
 const navs = document.querySelectorAll('.item');

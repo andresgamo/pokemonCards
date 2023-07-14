@@ -4,6 +4,8 @@ const grid = document.querySelector('#card-details-container');
 const cardSection = document.querySelector('.pokemon-details');
 const endPoint = `${url}/${id}`;
 
+let pokemonData = [];
+
 const buyButton = document.querySelector('input[value=Buy]');
 
 buyButton.addEventListener('click', addToCart);
@@ -18,10 +20,10 @@ function addToCart() {
     sessionStorage.setItem("cart", id);
     console.log(sessionStorage.cart);
   }
+  upDateTaxesContainer(pokemonData);
 }
 
 async function getData(allPokemonData){
-    const pokemonData = [];
     pokemonData.push({
         id: allPokemonData.id,
         name: allPokemonData.species.name,
@@ -45,9 +47,11 @@ function extract(elements, categoryName){
     return categoryCompiled;
 }
 
+
+
 async function main (){
     const data = await fetchData(endPoint);
-    const pokemonData = await getData(data);
+    pokemonData = await getData(data);
     showImg(pokemonData);
     showCard(pokemonData);
     showDetails(pokemonData);

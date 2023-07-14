@@ -20,3 +20,5 @@ async function getData(pokemonData, allPokemonData){
     });
   
 }
+
+// export {fetchData,getData}
