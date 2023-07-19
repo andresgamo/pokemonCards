@@ -1,6 +1,7 @@
 const url = "https://pokeapi.co/api/v2/pokemon";
 let actionStatus = false;
 let interval;
+let id = 0;
 
 pokemon = {
   sleep: 100,
@@ -11,26 +12,34 @@ pokemon = {
     if (pokemon.hunger <= 96) {
       pokemon.sleep -= 2;
       pokemon.hunger += 4;
+    }else{
+      pokemon.hunger = 100;
+      stop();
     }
   },
   sleeping: function () {
     if (pokemon.sleep <= 98) {
       pokemon.sleep += 2;
       pokemon.hunger -= 1;
+    }else{
+      pokemon.sleep = 100;
+      stop();
     }
   },
   coding: function () {
-    if (pokemon.sleep >= 0 && pokemon.hunger >= 0) {
-      pokemon.sleep -= 4;
+    if (pokemon.sleep > 0 && pokemon.hunger > 0) {
+      pokemon.sleep -= 40;
       pokemon.hunger -= 6;
       pokemon.sprint += 4;
       pokemon.seniority += 1;
     }
   },
+  alive: function(){
+    return pokemon.sleep > 0 && pokemon.hunger > 0 ?  true: false;
+  },
 };
 
-
-function statsUpDate(){
+function statsUpdate(){
   const sleepValue = document.querySelector(".sleep-percentaje");
   const hungerValue = document.querySelector(".hunger-percentaje");
   const sprint = document.querySelector('.sprint-level');
@@ -41,9 +50,22 @@ function statsUpDate(){
   seniority.style.width = `${pokemon.seniority}%`;
 }
 
-function initListeners() {
-  console.log(actionStatus);
+function endGame(){
+  stop();
+  pokemon.sleep < 0 ? pokemon.sleep = 0 : pokemon.hunger = 0;
+  statsUpdate();
   const actions = document.querySelector(".buttons-container");
+  for (const action of actions.childNodes) {
+    action.removeEventListener("click", play);
+  };
+}
+
+function initListeners() {
+  const actions = document.querySelector(".buttons-container");
+  const changeCharacterSelector = document.querySelector('.button-selectors');
+
+  changeCharacterSelector.addEventListener('click', changeCharacter);
+
   for (const action of actions.childNodes) {
     if (actionStatus) {
       action.removeEventListener("click", play);
@@ -55,22 +77,84 @@ function initListeners() {
   }
 }
 
+function changeCharacter(evt){
+  const assetsQuatinty = JSON.parse(sessionStorage.assets).length;
+  const selector = evt.target.attributes.value.textContent;
+  if(selector == 'back' && id > 0){
+    id -= 1;
+  }else if(selector == 'next' && id < (assetsQuatinty-1)){
+    id += 1;
+  }else if(selector == 'enter'){
+    updateCharacter(id);
+  }
+  updateCharacterContainer(id);
+}
+
+function updateCharacterContainer(id = 0){
+  const assets = JSON.parse(sessionStorage.assets);
+  const name = document.querySelector('.character-name');
+  const img = document.querySelector('.img-pokemon');
+  img.src = assets[id].img;
+  name.textContent = assets[id].name;
+}
+
+function updateAction(action, actionStatus){
+  if(actionStatus){
+    if(action == 'code'){
+      const codeIcon = document.querySelector('.fa-laptop');
+      codeIcon.classList.toggle('icon-active');
+    }else if(action == 'sleep'){
+      const codeIcon = document.querySelector('.fa-bed');
+      codeIcon.classList.toggle('icon-active');
+    }else{
+      const codeIcon = document.querySelector('.fa-utensils');
+      codeIcon.classList.toggle('icon-active');
+    }
+  }else{
+    const iconActive = document.querySelector('.icon-active');
+    iconActive.classList.remove('icon-active');
+  }
+}
+
 function play(evt) {
   const action = evt.target.attributes.value.textContent;
   actionStatus = true;
+  updateAction(action, actionStatus);
   initListeners();
   interval = setInterval(() => actions(action), 1000);
 }
 
 function stop() {
   actionStatus = false;
+  updateAction( null , actionStatus);
   initListeners();
   clearInterval(interval);
   interval = null;
 }
 
-function actions() {
-  console.log(action);
+function showPokedex(){
+  const pokedex = document.querySelector('.pokedex-section');
+  pokedex.innerHTML = 
+                        `<div class="pokedex">
+                        <div class="character-container">
+                            <img class="img-fit img-pokemon" src="./assets/QMark.png" alt="pokemon image">
+                            <div class="character-name">Who's that Pokémon?</div>
+                        </div>
+                        <div class="button-selectors">
+                            <div class="btn-left prev-character" value="back">
+                                <i class="fa fa-backward txt-light" value="back"></i>
+                            </div>
+                            <div class="btn-enter">
+                            <img class="img-fit" value="enter" src="./assets/Poké_Ball_icon.svg.png" alt="pokeball">
+                            </div>
+                            <div class="btn-right next-character" value="next">
+                                <i class="fa fa-forward txt-bold" value="next"></i>
+                            </div>
+                        </div>
+                      </div>`
+}
+
+function actions(action) {
   if (action === "sleep") {
     pokemon.sleeping();
   } else if (action === "feed") {
@@ -78,47 +162,26 @@ function actions() {
   } else if (action === "code") {
     pokemon.coding();
   }
-  statsUpDate();
+  pokemon.alive() ? statsUpdate() : endGame();
 }
 
-
-async function initPokemons(cart) {
-
-  for (let id = 0; id < cart.length; id++) {
-
-    const endPoint = `${url}/${cart[id]}`;
-    const allPokemonData = await fetchData(endPoint);
-    cart[id] = {
-      id: cart[id],
-      name: allPokemonData.species.name,
-      gif: allPokemonData.sprites.versions["generation-v"]["black-white"].animated.front_default,
-    };
-    
-  }
-  return cart;
-
-  // return cart.map(async (id) => {
-  //   const endPoint = `${url}/${id}`;
-
-  //   return await fetchData(endPoint);
-  // })
-}
-
-async function main(characters, id) {
-  const pokemonDetail = characters[id];
+async function updateCharacter(id = 0) {
+  const assets = JSON.parse(sessionStorage.assets);
   const pokemonGif = document.querySelector(".gif-pokemon");
-  pokemonGif.src = `${pokemonDetail.gif}`;
+  pokemonGif.src = assets[id].gif;
 }
 
 (async () => {
-  initListeners();
-  if (sessionStorage.cart) {
-    const cart = sessionStorage.cart.split(",");
-    const pokemons = await initPokemons(cart);
-    main(pokemons, id = 0);
+  if (sessionStorage.assets) {
+    showPokedex();
+    updateCharacterContainer();
+    updateCharacter();
   } else {
     const screen = document.querySelector(".middle");
-    screen.innerHTML = `<div class="txt-light">You got no pokémos yet.</div> 
-                         <div class="txt-bold">Go catch them all!</div>`;
+    screen.innerHTML = 
+    `<div class="txt-light">You got no pokémons yet.</div> 
+    <div class="txt-bold">Go catch them all!</div>
+    <a href="./marketPlace.html" class="pulse-link">BuyCards</a>`;
   }
+  initListeners();
 })();

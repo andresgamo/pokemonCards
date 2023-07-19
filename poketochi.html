@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/stylePoketochi.css">
     <link rel="stylesheet" href="./styles/styleDark.css">
+    <link rel="stylesheet" href="./styles/stylePoketochi.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -31,51 +31,61 @@
             <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
         </div>
     </header>
-    <section>
-        <div class="container">
-            <div class="tamagotchi">
-                <div class="left separation"></div>
-                <div class="name">
-                    <span class="initial">P</span>o<span class="m">k</span>étoc<span class="h">h</span>i
-                </div>
-                <div class="tamagotchi-inner">
-                    <div class="screen">
-                        <div class="top">
-                            <div class="stats-container">
-                                <div class="txt-bold">Sleep:&nbsp&nbsp&nbsp&nbsp<span class="sleep-percentaje">100</span><span>%</span></div>
-                                <div class="txt-bold">Hunger:<span class="hunger-percentaje"> 100</span><span>%</span></div>
+    <section class="main-section">
+         <section class="pokedex-section"></section> 
+        <section class="poketochi-section">
+            <div class="container">
+                <div class="tamagotchi">
+                    <div class="left separation"></div>
+                    <div class="name">
+                        <span class="initial">P</span>o<span class="m">k</span>étoc<span class="h">h</span>i
+                    </div>
+                    <div class="tamagotchi-inner">
+                        <div class="screen">
+                            <div class="top">
+                                <div class="stats-container">
+                                    <div class="txt-bold">Sleep:&nbsp&nbsp&nbsp&nbsp<span class="sleep-percentaje txt-bold">100</span><span class="txt-bold">%</span></div>
+                                    <div class="txt-bold">Hunger:<span class="hunger-percentaje txt-bold"> 100</span><span class="txt-bold">%</span></div>
+                                </div>
+                                <div class="sprint-container">
+                                    <span class="txt-bold">Sprint:&nbsp&nbsp</span>
+                                    <div class="sr-level">
+                                        <div class="sprint-level"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="sprint-container">
-                                <span class="txt-bold">Sprint:&nbsp&nbsp</span>
+                            <div class="middle">
+                                <img class="gif-pokemon" src="" alt="">
+                                <div class="icon-container">
+                                    <i class="fa-solid fa-bed fa-lg"></i>
+                                    <i class="fa-solid fa-laptop fa-lg"></i>
+                                    <i class="fa-solid fa-utensils fa-lg"></i>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <span class="txt-bold">Seniority:</span>
                                 <div class="sr-level">
-                                    <div class="sprint-level"></div>
+                                    <div class="exp-level"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="middle">
-                            <img class="gif-pokemon" src="" alt="">
-                        </div>
-                        <div class="bottom">
-                            <span class="txt-bold">Seniority:</span>
-                            <div class="sr-level">
-                                <div class="exp-level"></div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="right separation"></div>
+                    <div class="buttons-container">
+                        <div class="left button" value="sleep"></div>
+                        <div class="middle button" value="code"></div>
+                        <div class="right button" value="feed"></div>
+                    </div>
+                    <div class="actions-container">
+                        <div class="txt-bold">Sleep</div>
+                        <div class="txt-bold action-1">Code</div>
+                        <div class="txt-bold">Feed</div>
                     </div>
                 </div>
-                <div class="right separation"></div>
-                <div class="buttons-container">
-                    <div class="left button" value="sleep"></div>
-                    <div class="middle button" value="code"></div>
-                    <div class="right button" value="feed"></div>
-                </div>
-                <div class="actions-container">
-                    <div class="txt-bold">Sleep</div>
-                    <div class="txt-bold action-1">Code</div>
-                    <div class="txt-bold">Feed</div>
-                </div>
             </div>
-        </div>
+        </section>      
+        <section class="milestones-section">
+        </section>
     </section>
     <footer>
         <div class="left-footer">
@@ -83,9 +93,9 @@
             <p>Our vision is to provide convenience and help increase your sales business.</p>
             <div>
                 <ul class="inline gap">
-                    <li class="socials"><i class="fa-brands fa-twitter"></i></li>
-                    <li class="socials"><i class="fa-brands fa-facebook-f"></i></li>
-                    <li class="socials"><i class="fa-brands fa-instagram"></i></li>
+                    <li class="socials"><a href="https://twitter.com/i/flow/login?redirect_after_login=%2F" class="fa-brands fa-twitter txt-black"></a></li>
+                    <li class="socials"><a href="https://www.facebook.com/" class="fa-brands fa-facebook-f txt-black"></a></li>
+                    <li class="socials"><a href="https://www.instagram.com/" class="fa-brands fa-instagram txt-black"></a></li>
                 </ul>
             </div>
         </div>

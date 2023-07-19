@@ -11,14 +11,19 @@ const buyButton = document.querySelector('input[value=Buy]');
 buyButton.addEventListener('click', addToCart);
 
 function addToCart() {
-  if (sessionStorage.cart) {
-    const cart = sessionStorage.cart.split(',');
-    cart.push(id);
-    sessionStorage.setItem("cart", cart);
-    console.log(sessionStorage.cart, cart);
+  const data = {
+    id: pokemonData[0].id,
+    name: pokemonData[0].name,
+    gif: pokemonData[0].gif,
+    img: pokemonData[0].img,
+  };
+
+  if (sessionStorage.assets) {
+    const assetsData = JSON.parse(sessionStorage.assets);
+    assetsData.push(data);
+    sessionStorage.setItem("assets", JSON.stringify(assetsData));
   } else {
-    sessionStorage.setItem("cart", id);
-    console.log(sessionStorage.cart);
+    sessionStorage.setItem("assets", JSON.stringify([data]));
   }
   upDateTaxesContainer(pokemonData);
 }
@@ -36,7 +41,7 @@ async function getData(allPokemonData){
         hp: allPokemonData.stats[0].base_stat,
         gif: allPokemonData.sprites.versions['generation-v']['black-white'].animated.front_default,
     });
-    return pokemonData;
+    return pokemonData; 
 }
 
 function extract(elements, categoryName){

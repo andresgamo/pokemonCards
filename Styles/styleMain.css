@@ -187,7 +187,7 @@ i{
     color: #FFFFFF;
 }
 
-ul[class="right-footer-ul"] p{
+.right-footer-ul > p{
     font-weight: 600;
     font-size: 1.25rem;
     line-height: 150%;
@@ -210,4 +210,8 @@ ul[class="right-footer-ul"] p{
 
 input:hover{
     cursor: pointer
+}
+
+.txt-black{
+    color: rgb(0, 0, 0);
 }

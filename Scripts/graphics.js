@@ -23,7 +23,10 @@ function toggleTheme() {
   socials.forEach((element) => element.classList.toggle("dark-2"));
 
   for (let i = 0; i < all.length; i++) {
-    all[i].classList.toggle("dark-txt");
+      all[i].classList.toggle("dark-txt");
+      if(!all[i].classList.contains('fa') && window.location.pathname === '/poketochi.html'){
+        all[i].classList.toggle("dark-txt");
+      }
   }
 
   if (window.location.pathname === '/buyCard.html') {
@@ -38,6 +41,7 @@ function toggleTheme() {
     downCart.classList.toggle("dark-border");
     shoppingCart.classList.toggle("dark-border");
   }
+
 }
 
 function upDateTaxesContainer(pokemons){
