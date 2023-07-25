@@ -85,10 +85,20 @@ nav ul {
     text-decoration: underline 0.5px;
 }
 
-.input-container {
+.input-container{
     width: 5.125rem;
     height: 2.375rem;
     max-height: 100%;
+    box-shadow: 0rem 0.25rem 0.25rem rgb(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    letter-spacing: -0.03em;
+    background-color: white !important;
+} 
+
+#dark-mode{
+    color: #306BB3 !important;
 }
 
 input {
@@ -102,9 +112,13 @@ input {
     /* background-color: white !important; */
 }
 
-input[value="Dark Mode"] {
-    color: #306BB3 !important;
+button:hover{
+    cursor: pointer;
 }
+
+/* input[value="Dark Mode"] {
+    color: #306BB3 !important;
+} */
 
 .footer-logo {
     display: flex;
@@ -438,6 +452,10 @@ input:hover {
     }
 }
 
+.button:hover{
+    cursor: pointer;
+}
+
 .pulse-link{
     color: #0075BE !important;
     transform: translateY(1rem);
@@ -516,6 +534,8 @@ input:hover {
     height: 100%;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
     background-color: #FFDE00;
     margin: 0.5px;
 }
@@ -552,7 +572,7 @@ input:hover {
 
 .pokedex{
     height: 45vh;
-    /* width: 17rem; */
+    width: 17rem;
     min-width: 18.8rem;
     max-width: 24rem;
     display: flex;
@@ -560,10 +580,6 @@ input:hover {
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    /* box-shadow:
-        inset 0 -3em 3em rgba(0, 0, 0, 0.1),
-             0 0 0 0px rgb(211, 211, 211),
-            0.5em 0.5em 1em rgba(0, 0, 0, 0.3); */
     background-image: url("../assets/pokedex.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -590,6 +606,9 @@ input:hover {
 }
 
 .character-name{
+    background: none;
+    border: none;
+    height: 2rem;
     width: 100%;
     text-transform: capitalize;
     color: rgb(59, 59, 59) !important;
@@ -675,3 +694,148 @@ input:hover {
     color:rgba(59, 59, 59, 0.211);
 }
 
+.table-container{ 
+    height: 45vh;
+    width: 100%;
+    /* min-width: 18.8rem;
+    max-width: 24rem; */
+    overflow: scroll;
+    padding: 0rem 1rem;
+    box-sizing: border-box;
+    transform: translateX(-20px);
+}
+
+.table{
+    width: 100%;
+    font-size: small;
+}
+
+.main-header{
+    font-size:larger;
+    border-bottom: solid #0000006b 1px;
+    padding: 8px;
+}
+
+th,td{
+    text-align: left;
+    color: black;
+    padding: 2px;
+}
+
+th{
+    color: #000000;
+}
+
+thead{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #ffffff;
+}
+
+td{
+    height: 2rem;
+    padding: 0px;
+    color: #000000;
+}
+
+#col-1{
+    width: 4rem;
+}
+
+#col-2{
+    width: 3rem;
+}
+
+#col-3{
+    width: 6rem;
+}
+
+#col-4{
+    width: 18rem;
+}
+
+.flex{
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.img-medal{
+    width: calc(100%/8);
+}
+
+.txt-capitalize{
+    text-transform: capitalize;
+}
+
+.txt-center{
+    text-align: center;
+}
+
+.modal-polygon {
+    display: none;
+    position: fixed;
+    box-sizing: border-box;
+    z-index: 1;
+    width: 220px;
+    height: 187px;
+    margin-left: 410px;
+    margin-bottom: 72px;
+    background-color: rgba(80, 80, 80, 0.917);
+    padding: 2px;
+    border-radius: 10px;
+    clip-path: polygon(0 0, 100% 0, 100% 83%, 83% 100%, 0% 100%, 0% 0%);
+}
+
+.modal{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 0px 0px 10px;
+    border-radius: 8px;
+    background-color: rgb(232, 232, 232);
+    clip-path: polygon( 0 0, 100% 0, 100% 83%, 83% 100%, 0% 100%, 0% 0% );
+}
+
+.display-block{
+    display: block;
+    animation: 1.5s in;
+  }
+  @keyframes in {
+      0% {
+          opacity: 0;
+      }
+
+      100% {
+          opacity: 1;
+      }
+}
+
+.txt-2 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #1A202C !important;
+    text-transform: capitalize;
+    font-size: small;
+}
+
+.txt-1 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #1A202C !important;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: small;
+}
+
+.close {
+    color: #aaaaaa !important;
+    float: right;
+    font-size: 28px;
+    font-weight: normal;
+    transform: translate(-7px, -12px);
+}
+.close:hover{
+    cursor: pointer;
+}

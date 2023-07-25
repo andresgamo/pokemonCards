@@ -11,19 +11,17 @@ const buyButton = document.querySelector('input[value=Buy]');
 buyButton.addEventListener('click', addToCart);
 
 function addToCart() {
-  const data = {
-    id: pokemonData[0].id,
-    name: pokemonData[0].name,
-    gif: pokemonData[0].gif,
-    img: pokemonData[0].img,
-  };
+
+  const currentData = pokemonData[0];
 
   if (sessionStorage.assets) {
     const assetsData = JSON.parse(sessionStorage.assets);
-    assetsData.push(data);
-    sessionStorage.setItem("assets", JSON.stringify(assetsData));
+    if(!assetsData.find(asset => asset.id === currentData.id)){
+      assetsData.push(currentData);
+      sessionStorage.setItem("assets", JSON.stringify(assetsData));
+    }
   } else {
-    sessionStorage.setItem("assets", JSON.stringify([data]));
+    sessionStorage.setItem("assets", JSON.stringify([currentData]));
   }
   upDateTaxesContainer(pokemonData);
 }

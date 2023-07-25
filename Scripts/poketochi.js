@@ -1,13 +1,14 @@
 const url = "https://pokeapi.co/api/v2/pokemon";
 let actionStatus = false;
 let interval;
-let id = JSON.parse(sessionStorage.assets).length - 1;
+let id;
 
 let pokemon = {
   sleep: 100,
   hunger: 100,
   sprint: 0,
   seniority: 0,
+  // medals: 0,
   eating: function () {
     if (pokemon.hunger <= 96) {
       pokemon.sleep -= 2;
@@ -28,9 +29,9 @@ let pokemon = {
   },
   coding: function () {
     if (pokemon.sleep > 0 && pokemon.hunger > 0) {
-      pokemon.sleep -= 40;
+      pokemon.sleep -= 4;
       pokemon.hunger -= 6;
-      pokemon.sprint += 4;
+      pokemon.sprint += 40;
       pokemon.seniority += 1;
     }
   },
@@ -42,6 +43,7 @@ let pokemon = {
     this.hunger = 100;
     this.sprint = 0;
     this.seniority = 0;
+    // this.medals = getMedals();
   },
 };
 
@@ -66,6 +68,7 @@ function endGame(){
   }
   const screen = document.querySelector(".middle");
   screen.innerHTML = `  <div class="txt-screen">
+                        <img class="gif-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/129.gif" alt="pokemon gif">
                           <p class="txt-bold">Game Over!</p>
                         </div>
                         <div class="icon-container">
@@ -92,7 +95,21 @@ function initPoketochiListeners() {
 function initPokedexListeners(){
   const changeCharacterSelector = document.querySelector('.button-selectors');
   changeCharacterSelector.addEventListener('click', changeCharacter);
+
+  const detalis = document.querySelector('.character-name');
+  
+
+  detalis.addEventListener('click', () => {
+    closeDetailsContainer();
+    const close = document.querySelector('.close');
+    close.addEventListener('click', closeDetailsContainer);
+  });
 }
+
+function closeDetailsContainer() {
+  const detailsContainer = document.querySelector('.modal-polygon');
+  detailsContainer.classList.toggle('display-block');
+};
 
 function changeCharacter(evt){
   const assetsQuatinty = JSON.parse(sessionStorage.assets).length;
@@ -102,9 +119,9 @@ function changeCharacter(evt){
   }else if(selector == 'next' && id > 0){
     id -= 1;
   }else if(selector == 'enter'){
-    initPoketochi(id);
+    initPoketochi();
   }
-  updateCharacterContainer(id);
+  updateCharacterContainer();
 }
 
 function updateCharacterContainer(){
@@ -113,7 +130,26 @@ function updateCharacterContainer(){
   const img = document.querySelector('.img-pokemon');
   img.src = assets[id].img;
   name.textContent = assets[id].name;
-  
+  updateDetailsContainer(assets);
+ 
+}
+
+function updateDetailsContainer(pokemons) {
+  const details = document.querySelector(".card-details");
+  details.innerHTML = '';
+  const pokemonDetails = pokemons[id];
+  for (const [attributeName, attributeValue] of Object.entries(pokemonDetails)) {
+    if (attributeName != "img" && attributeName != "gif") {
+      const detail = document.createElement("li");
+      if (sessionStorage.darkMode === "on") {
+        detail.innerHTML = `<span class="txt-1 dark-txt">${attributeName}:</span><span class="txt-2 dark-txt">&nbsp&nbsp${attributeValue}</span>`;
+        details.appendChild(detail);
+      } else {
+        detail.innerHTML = `<span class="txt-1">${attributeName}:</span><span class="txt-2">&nbsp&nbsp${attributeValue}</span>`;
+        details.appendChild(detail);
+      }
+    }
+  }
 }
 
 function updateAction(action, actionStatus){
@@ -153,24 +189,68 @@ function stop() {
 function showPokedex(){
   const pokedex = document.querySelector('.pokedex-section');
   pokedex.innerHTML = 
-                        `<div class="pokedex">
-                          <div class="character-container">
-                              <img class="img-fit img-pokemon" src="./assets/QMark.png" alt="pokemon image">
-                              <div class="character-name">Who's that Pokémon?</div>
+                        `<div class="modal-polygon">
+                            <div class="modal">
+                                <span class="close">&times;</span>
+                                <ul class="card-details"></ul>
+                            </div>
                           </div>
-                          <div class="button-selectors">
-                              <div class="btn-left prev-character" value="back">
-                                  <i class="fa fa-backward txt-light" value="back"></i>
+                          <div class="pokedex">
+                              <div class="character-container">
+                                  <img class="img-fit img-pokemon" src="./assets/QMark.png" alt="pokemon image">
+                                  <button class="character-name">Who's that Pokémon?</button>
                               </div>
-                              <div class="btn-enter">
-                              <img class="img-fit" value="enter" src="./assets/Poké_Ball_icon.svg.png" alt="pokeball">
+                              <div class="button-selectors">
+                                  <div class="btn-left prev-character" value="back">
+                                      <i class="fa fa-backward txt-light" value="back"></i>
+                                  </div>
+                                  <div class="btn-enter">
+                                    <img class="img-fit" value="enter" src="./assets/Poké_Ball_icon.svg.png" alt="pokeball">
+                                  </div>
+                                  <div class="btn-right next-character" value="next">
+                                      <i class="fa fa-forward txt-bold" value="next"></i>
+                                  </div>
                               </div>
-                              <div class="btn-right next-character" value="next">
-                                  <i class="fa fa-forward txt-bold" value="next"></i>
-                              </div>
-                          </div>
-                        </div>`
+                          </div>`
+      }
+
+function updateTableStandings(){
+  const assets = JSON.parse(sessionStorage.assets);
+  const tableStandings = document.querySelector('.table-standings');
+  const tableHeader = document.querySelector('thead');
+
+  tableHeader.innerHTML = ` <tr>
+                              <th colspan="5" class="txt-center main-header">Pokétochi League standings</th>
+                            </tr>
+                            <tr>
+                              <th id="col-1"></th>
+                              <th id="col-2">Id</th>
+                              <th id="col-3">Name</th>
+                              <th id="col-4">Sprints</th>
+                              <th>Seniority</th>
+                            </tr>`;
+  assets.forEach(pokemon => {
+    const tableRow = document.createElement('tr');
+    tableRow.innerHTML = 
+                          ` <td><img class="img-fit" src="${pokemon.gif}" alt=""></td>
+                            <td>${pokemon.id}</td>
+                            <td class="txt-capitalize">${pokemon.name}</td>
+                            <td class="flex td-medal"></td>
+                            <td>Senior</td>`;
+    tableStandings.appendChild(tableRow);
+  });
 }
+
+// function medal(){
+// return `<img class="img-fit img-medal" src="./assets/cascade.png" alt="Cascade Badge"> 
+// <img class="img-fit img-medal" src="./assets/boulder.png" alt="boulder badge">
+// <img class="img-fit img-medal" src="./assets/earth.png" alt="Cascade Badge"> 
+// <img class="img-fit img-medal" src="./assets/volcano.png" alt="boulder badge">
+// <img class="img-fit img-medal" src="./assets/soul.png" alt="Cascade Badge"> 
+// <img class="img-fit img-medal" src="./assets/rainbaow.png" alt="boulder badge">
+// <img class="img-fit img-medal" src="./assets/marsh.png" alt="Cascade Badge"> 
+// <img class="img-fit img-medal" src="./assets/thunder.png" alt="boulder badge">`
+// }
 
 function actions(action) {
   if (action === "sleep") {
@@ -183,23 +263,20 @@ function actions(action) {
   pokemon.alive() ? statsUpdate() : endGame();
 }
 
-async function updateCharacter(id = 0) {
+function updateCharacter() {
   const assets = JSON.parse(sessionStorage.assets);
   const screen = document.querySelector('.middle');
   screen.innerHTML = 
-                      ` <img class="gif-pokemon" src="" alt="pokemon gif">
+                      ` <img class="gif-pokemon" src="${assets[id].gif}" alt="pokemon gif">
                         <div class="icon-container">
                           <i class="fa-solid fa-bed fa-lg"></i>
                           <i class="fa-solid fa-laptop fa-lg"></i>
                           <i class="fa-solid fa-utensils fa-lg"></i>
                         </div>`;
-  
-  const pokemonGif = document.querySelector('.gif-pokemon');
-  pokemonGif.src = assets[id].gif;
 }
 
-function initPoketochi(id){
-  updateCharacter(id);
+function initPoketochi(){
+  updateCharacter();
   initPoketochiListeners();
   pokemon.init();
   statsUpdate()
@@ -207,9 +284,11 @@ function initPoketochi(id){
 
 (async () => {
   if (sessionStorage.assets) {
+    id = JSON.parse(sessionStorage.assets).length - 1;
     showPokedex();
     updateCharacterContainer();
-    initPokedexListeners()
+    initPokedexListeners();
+    updateTableStandings();
   } else {
     const screen = document.querySelector(".middle");
     screen.innerHTML = 

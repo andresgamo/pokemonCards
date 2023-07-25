@@ -84,7 +84,21 @@ nav ul{
     width: 5.125rem;
     height: 2.375rem;
     max-height: 100%;
+    box-shadow: 0rem 0.25rem 0.25rem rgb(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    letter-spacing: -0.03em;
+    background-color: white !important;
 } 
+
+button:hover{
+    cursor: pointer;
+}
+
+#dark-mode{
+    color: #306BB3 !important;
+}
 
 input{
     width: 100%;
@@ -97,9 +111,9 @@ input{
     /* background-color: white !important; */
 } 
 
-input[value="Dark Mode"]{
+/* input[value="Dark Mode"]{
     color:#306BB3 !important;
-}
+} */
 
 .footer-logo{
     display: flex;

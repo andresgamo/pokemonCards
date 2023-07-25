@@ -9,8 +9,10 @@ const body = document.querySelector("body");
 darkMode.addEventListener("click", () => {
   if (sessionStorage.darkMode === "on") {
     sessionStorage.darkMode = "off";
+    darkMode.textContent = 'Dark Mode';
   } else {
     sessionStorage.darkMode = "on";
+    darkMode.textContent = 'Light Mode';
   }
   toggleTheme();
 });
@@ -24,7 +26,7 @@ function toggleTheme() {
 
   for (let i = 0; i < all.length; i++) {
       all[i].classList.toggle("dark-txt");
-      if(!all[i].classList.contains('fa') && window.location.pathname === '/poketochi.html'){
+      if(all[i].classList.contains('fa-solid') && window.location.pathname === '/poketochi.html'){
         all[i].classList.toggle("dark-txt");
       }
   }
@@ -40,6 +42,11 @@ function toggleTheme() {
     downCart.classList.toggle("dark-1");
     downCart.classList.toggle("dark-border");
     shoppingCart.classList.toggle("dark-border");
+  }
+
+  if (window.location.pathname === '/poketochi.html') {
+    const thead = document.querySelector('thead');
+    thead.classList.toggle("dark-2");
   }
 
 }
@@ -91,10 +98,8 @@ function showCard(pokemons) {
 
 function showDetails(pokemons) {
   const details = document.querySelector(".card-details");
-  const pokemonDetalis = pokemons[0];
-  for (const [attributeName, attributeValue] of Object.entries(
-    pokemonDetalis
-  )) {
+  const pokemonDetails = pokemons[0];
+  for (const [attributeName, attributeValue] of Object.entries(pokemonDetails)) {
     if (attributeName != "img" && attributeName != "gif") {
       const detail = document.createElement("li");
       if (sessionStorage.darkMode === "on") {

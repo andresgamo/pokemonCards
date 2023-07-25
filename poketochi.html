@@ -23,12 +23,13 @@
         <div class="inline">
             <nav>
                 <ul>
-                    <li><a class="nav-txt nav-txt-select" href="./index.html">Home</a></li>
+                    <li><a class="nav-txt" href="./index.html">Home</a></li>
                     <li><a class="nav-txt" href="./marketPlace.html">BuyCards</a></li>
                     <li><a class="nav-txt" href="./ourBlog.html">Our Blog</a></li>
                 </ul>
             </nav>
-            <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div>
+            <!-- <div class="input-container" id="dark-mode"><input type="button" value="Dark Mode"></div> -->
+            <button class="input-container" id="dark-mode"> Dark Mode</button>
         </div>
     </header>
     <section class="main-section">
@@ -91,6 +92,13 @@
             </div>
         </section>
         <section class="milestones-section">
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                    </thead>
+                    <tbody class="table-standings"></tbody>
+                </table>
+            </div>
         </section>
     </section>
     <footer>
@@ -134,8 +142,8 @@
     </footer>
 
     <script src="./Scripts/fetchData.js"></script>
-    <script src="./scripts/graphics.js"></script>
     <script src="./scripts/poketochi.js"></script>
+    <script src="./scripts/graphics.js"></script>
 
 </body>
 
