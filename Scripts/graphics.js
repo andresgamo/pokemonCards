@@ -59,22 +59,35 @@ function upDateTaxesContainer(pokemons){
 }
 
 function showCards(pokemons) {
-  for (let i = 0; i < pokemons.length; i++) {
-    const card = document.createElement("div");
-    card.classList.add("main-container");
-    card.innerHTML = `<div class="up-container">
-                <p>${pokemons[i].name}</p>
-                <a href="">${pokemons[i].hp} HP</a>
-            </div>
-            <div class="img-container">
-                <img class="img-pokemon" src="${pokemons[i].img}" alt="${pokemons[i].name}">
-            </div>
-            <div class="down-container">
-                <p>${pokemons[i].exp} exp</p>
-                <a href="./buyCard.html?pokemon=${pokemons[i].id}" value="buy"><input type="button" value="Buy"></a>
-            </div> `;
-    grid.appendChild(card);
+  try {
+    if (pokemons.length !== 0) {
+      for (let i = 0; i < pokemons.length; i++) {
+        const card = document.createElement("div");
+        card.classList.add("main-container");
+        card.innerHTML = `<div class="up-container">
+                    <p>${pokemons[i].name}</p>
+                    <a href="">${pokemons[i].hp} HP</a>
+                </div>
+                <div class="img-container">
+                    <img class="img-pokemon" src="${pokemons[i].img}" alt="${pokemons[i].name}">
+                </div>
+                <div class="down-container">
+                    <p>${pokemons[i].exp} exp</p>
+                    <a href="./buyCard.html?pokemon=${pokemons[i].id}" value="buy"><input type="button" value="Buy"></a>
+                </div> `;
+        grid.appendChild(card);
+      }
+    } else {
+      throw "no pokémos found";
+    }
+  } catch (error) {
+    console.log(error)
+    displayNothingFound();
   }
+}
+
+function displayNothingFound(){
+  grid.innerHTML =  `<img src="../assets/notFound.png" alt="pokémon not found"></img>`;
 }
 
 function showCard(pokemons) {
@@ -149,6 +162,7 @@ function updateNumCards() {
 
 (() => {
   if (sessionStorage.darkMode === "on") {
+    darkMode.textContent = 'Light Mode';
     toggleTheme();
   }
 })();

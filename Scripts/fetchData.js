@@ -4,8 +4,8 @@ async function fetchData (endPoint){
       const data = await response.json();
       return data;
     } catch (error) {
-      deleteLoadSpiner();
       console.error(error);
+      return data = [];
     } 
 }
 

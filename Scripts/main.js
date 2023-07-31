@@ -4,13 +4,40 @@ const url = 'https://pokeapi.co/api/v2';
 const grid = document.querySelector('.grid-2');
 const navs = document.querySelectorAll('.item');
 const numCards = document.querySelector('#num-cards');
-let offset = 0;
+const showMoreCards = document.querySelector('input[value="Show more cards"]');
+const goUp = document.querySelector('#go-up');
+const btnSearch = document.querySelector('.btn-search');
+const userInput = document.querySelector('input[type="text"]');
 
-document.querySelector('input[value="Show more cards"]').addEventListener('click', addCards);
-document.querySelector('#go-up').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+btnSearch.addEventListener('click', search);
+userInput.addEventListener('keypress',search);
+showMoreCards.addEventListener('click', addCards);
+goUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 navs.forEach(nav => {
     nav.addEventListener('click', changeNavIdentifier);
 });
+
+let offset = 0;
+
+endSectionButtons = [numCards,showMoreCards, goUp];
+
+function displayEndSecButtons (key){
+    endSectionButtons.forEach(button => button.style.display = `${key}`);
+}
+
+async function search(e) {
+  if (e.keyCode == 13 || e.target.type == 'submit') {
+    if (userInput.value == "") {
+        removeGrid();
+        searchByCategory();
+    } else {
+      removeGrid();
+      showCards(await searchByName(userInput.value.toLowerCase()));
+      deleteLoadSpiner();
+    }
+  }
+  displayEndSecButtons(key = 'none');
+}
 
 async function getPokemonData (filterData, from, to){
     const pokemonData = [];
@@ -52,27 +79,45 @@ async function changeNavIdentifier(e){
     e.target.classList.replace('item-b','item-a');
     offset = 0;
     removeGrid();
-    await main();
+    displayEndSecButtons(key = 'none');
+    await searchByCategory();
 }
 
 async function addCards(){
+    showMoreCards.removeEventListener('click', addCards);
     offset += 20;
-    await main();
+    await searchByCategory();
+    showMoreCards.addEventListener('click', addCards);
 }
 
-async function main(from, to) {
-  const cardCategory = document.querySelector('.item-a').textContent;
-  addLoadSpiner();
-  if (cardCategory == 'all') {
-    let from = 1 + offset, to = 20 + offset;
+async function searchByName(name){
+    addLoadSpiner();
+    const pokemonData = [];
     const path = `pokemon`;
-    const endPoint = `${url}/${path}`
+    const endPoint = `${url}/${path}/${name}`;
+    const allPokemonData = await fetchData(endPoint);
+    if(allPokemonData.length !== 0){
+        getData(pokemonData, allPokemonData);
+    }
+  return pokemonData;
+}
+
+async function searchByCategory(from, to) {
+  userInput.value = '';
+  const cardCategory = document.querySelector(".item-a").textContent;
+  addLoadSpiner();
+  if (cardCategory == "all") {
+    let from = 1 + offset,
+      to = 20 + offset;
+    const path = `pokemon`;
+    const endPoint = `${url}/${path}`;
     const pokemonData = await getPokemonData(endPoint, from, to);
     showCards(pokemonData);
     updateNumCards();
   } else {
-    let from = 0 + offset, to = 19 + offset;
-    const path = 'type';
+    let from = 0 + offset,
+      to = 19 + offset;
+    const path = "type";
     const endPoint = `${url}/${path}/${cardCategory}`;
     const data = await fetchData(endPoint);
     const filterData = await getUrl(data.pokemon);
@@ -81,6 +126,7 @@ async function main(from, to) {
     updateNumCards();
   }
   await deleteLoadSpiner();
+  displayEndSecButtons(key = 'block');
 }
 
-main();
+searchByCategory();

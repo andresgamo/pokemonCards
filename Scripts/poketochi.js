@@ -8,7 +8,8 @@ let pokemon = {
   hunger: 100,
   sprint: 0,
   seniority: 0,
-  // medals: 0,
+  medals: 0,
+  gif: 0,
   eating: function () {
     if (pokemon.hunger <= 96) {
       pokemon.sleep -= 2;
@@ -31,19 +32,30 @@ let pokemon = {
     if (pokemon.sleep > 0 && pokemon.hunger > 0) {
       pokemon.sleep -= 4;
       pokemon.hunger -= 6;
-      pokemon.sprint += 40;
-      pokemon.seniority += 1;
+      pokemon.sprint += 50;
+      if(pokemon.medals < 8){
+        pokemon.seniority += 1;
+      }
     }
   },
   alive: function () {
     return pokemon.sleep > 0 && pokemon.hunger > 0 ? true : false;
   },
+  getMedals: function (){
+     for (const gif of document.querySelectorAll('td > img')) {
+          if(gif.src == pokemon.gif){
+            return gif.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.childElementCount;
+          };
+     };
+  },
+  sprintEnd: function(){
+    return pokemon.sprint >= 100 ? true : false;
+  },
   init: function () {
     this.sleep = 100;
     this.hunger = 100;
     this.sprint = 0;
-    this.seniority = 0;
-    // this.medals = getMedals();
+    this.medals = pokemon.getMedals();
   },
 };
 
@@ -220,14 +232,13 @@ function updateTableStandings(){
   const tableHeader = document.querySelector('thead');
 
   tableHeader.innerHTML = ` <tr>
-                              <th colspan="5" class="txt-center main-header">Pokétochi League standings</th>
+                              <th colspan="4" class="txt-center main-header">Pokétochi League standings</th>
                             </tr>
                             <tr>
                               <th id="col-1"></th>
                               <th id="col-2">Id</th>
                               <th id="col-3">Name</th>
                               <th id="col-4">Sprints</th>
-                              <th>Seniority</th>
                             </tr>`;
   assets.forEach(pokemon => {
     const tableRow = document.createElement('tr');
@@ -235,22 +246,10 @@ function updateTableStandings(){
                           ` <td><img class="img-fit" src="${pokemon.gif}" alt=""></td>
                             <td>${pokemon.id}</td>
                             <td class="txt-capitalize">${pokemon.name}</td>
-                            <td class="flex td-medal"></td>
-                            <td>Senior</td>`;
+                            <td class="flex td-medal"></td>`;
     tableStandings.appendChild(tableRow);
   });
 }
-
-// function medal(){
-// return `<img class="img-fit img-medal" src="./assets/cascade.png" alt="Cascade Badge"> 
-// <img class="img-fit img-medal" src="./assets/boulder.png" alt="boulder badge">
-// <img class="img-fit img-medal" src="./assets/earth.png" alt="Cascade Badge"> 
-// <img class="img-fit img-medal" src="./assets/volcano.png" alt="boulder badge">
-// <img class="img-fit img-medal" src="./assets/soul.png" alt="Cascade Badge"> 
-// <img class="img-fit img-medal" src="./assets/rainbaow.png" alt="boulder badge">
-// <img class="img-fit img-medal" src="./assets/marsh.png" alt="Cascade Badge"> 
-// <img class="img-fit img-medal" src="./assets/thunder.png" alt="boulder badge">`
-// }
 
 function actions(action) {
   if (action === "sleep") {
@@ -261,6 +260,35 @@ function actions(action) {
     pokemon.coding();
   }
   pokemon.alive() ? statsUpdate() : endGame();
+  if(pokemon.sprintEnd()){
+    pokemon.sprint = 100;
+    stop();
+    statsUpdate();
+    updateMedals();
+    statsUpdate();
+  };
+}
+
+function updateMedals(){
+  const medals = [
+    '<img class="img-fit img-medal" src="./assets/cascade.png" alt="Cascade Badge">',
+    '<img class="img-fit img-medal" src="./assets/boulder.png" alt="boulder badge">',
+    '<img class="img-fit img-medal" src="./assets/earth.png" alt="Cascade Badge">',
+    '<img class="img-fit img-medal" src="./assets/volcano.png" alt="boulder badge">',
+    '<img class="img-fit img-medal" src="./assets/soul.png" alt="Cascade Badge">',
+    '<img class="img-fit img-medal" src="./assets/rainbaow.png" alt="boulder badge">',
+    '<img class="img-fit img-medal" src="./assets/marsh.png" alt="Cascade Badge">',
+    '<img class="img-fit img-medal" src="./assets/thunder.png" alt="boulder badge">',
+  ];
+  if(pokemon.medals < 8){
+    for (const gif of document.querySelectorAll("td > img")) {
+      if (gif.src == pokemon.gif) {
+        gif.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.insertAdjacentHTML('beforeend',medals[pokemon.medals]);
+      };
+    };
+    pokemon.medals += 1;
+  }
+  pokemon.init();
 }
 
 function updateCharacter() {
@@ -273,6 +301,7 @@ function updateCharacter() {
                           <i class="fa-solid fa-laptop fa-lg"></i>
                           <i class="fa-solid fa-utensils fa-lg"></i>
                         </div>`;
+  pokemon.gif = assets[id].gif;
 }
 
 function initPoketochi(){

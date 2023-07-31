@@ -525,6 +525,8 @@ input:hover {
     height: 100%;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
     background-color: #0075BE ;
     margin: 0.5px;
 }
@@ -706,13 +708,13 @@ input:hover {
 }
 
 .table{
-    width: 100%;
+    width: 80%;
     font-size: small;
 }
 
 .main-header{
     font-size:larger;
-    border-bottom: solid #0000006b 1px;
+    border-bottom: solid #9999996b 1px;
     padding: 8px;
 }
 
@@ -792,10 +794,11 @@ td{
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    padding: 5px 0px 0px 10px;
+    padding: 5px 5px 5px 10px;
     border-radius: 8px;
     background-color: rgb(232, 232, 232);
     clip-path: polygon( 0 0, 100% 0, 100% 83%, 83% 100%, 0% 100%, 0% 0% );
+    overflow: scroll;
 }
 
 .display-block{
