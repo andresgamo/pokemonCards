@@ -217,7 +217,7 @@ function showPokedex(){
                                       <i class="fa fa-backward txt-light" value="back"></i>
                                   </div>
                                   <div class="btn-enter">
-                                    <img class="img-fit" value="enter" src="./assets/Poké_Ball_icon.svg.png" alt="pokeball">
+                                    <img class="img-fit" value="enter" src="./assets/pokeball.png" alt="pokeball">
                                   </div>
                                   <div class="btn-right next-character" value="next">
                                       <i class="fa fa-forward txt-bold" value="next"></i>
