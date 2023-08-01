@@ -103,7 +103,7 @@ function showCard(pokemons) {
             </div>
             <div class="down-container">
                 <p>${pokemons[i].exp} exp</p>
-                <div id="pokemon-logo"> <img src="./Assets/logo.png" alt="pokémon-logo"></div>
+                <div id="pokemon-logo"> <img src="./assets/logo.png" alt="pokémon-logo"></div>
             </div> `;
     cardSection.appendChild(card);
   }
